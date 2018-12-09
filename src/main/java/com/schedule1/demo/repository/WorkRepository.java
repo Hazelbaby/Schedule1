@@ -1,9 +1,12 @@
 package com.schedule1.demo.repository;
 
 
+import org.springframework.stereotype.Repository;
+
 import java.util.Calendar;
 import java.util.Date;
 
+@Repository
 public class WorkRepository {
 
     public String findWorksByDayOfWeek(String dayOfWeek){
