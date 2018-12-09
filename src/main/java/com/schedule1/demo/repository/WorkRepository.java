@@ -3,39 +3,47 @@ package com.schedule1.demo.repository;
 
 import org.springframework.stereotype.Repository;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 @Repository
 public class WorkRepository {
 
-    public String findWorksByDayOfWeek(String dayOfWeek){
-
-        String DailyWork="工作";
-        switch (dayOfWeek){
-            case "Monday":
-                DailyWork="支付开会";
-                break;
-            case "Tuesday":
-                DailyWork="网关开发";
-                break;
-            case "Wednesday":
-                DailyWork="交易开发";
-                break;
-            case "Thursday":
-                DailyWork="支付前置开发";
-                break;
-            case "Friday":
-                DailyWork="支付引擎开发";
-                break;
-            case "Saturday":
-                DailyWork="加班联调";
-                break;
-            case "Sunday":
-                DailyWork="加班测试";
-                break;
+    public String findWorksByDayOfWeek(String startDate){
+        try {
+            SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+            String date=getdayOfWeek(simpleDateFormat.parse(startDate));
+            String DailyWork="工作";
+            switch (date){
+                case "Monday":
+                    DailyWork="支付开会";
+                    break;
+                case "Tuesday":
+                    DailyWork="网关开发";
+                    break;
+                case "Wednesday":
+                    DailyWork="交易开发";
+                    break;
+                case "Thursday":
+                    DailyWork="支付前置开发";
+                    break;
+                case "Friday":
+                    DailyWork="支付引擎开发";
+                    break;
+                case "Saturday":
+                    DailyWork="加班联调";
+                    break;
+                case "Sunday":
+                    DailyWork="加班测试";
+                    break;
+            }
+            return DailyWork;
         }
-        return DailyWork;
+        catch (ParseException e){e.printStackTrace();
+        return null;}
+
     }
 
     public String getdayOfWeek(Date startDate){

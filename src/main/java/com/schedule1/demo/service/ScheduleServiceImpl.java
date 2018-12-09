@@ -14,10 +14,10 @@ public class ScheduleServiceImpl implements IScheduleService {
     public WorkRepository workRepository;
 
     @Override
-    public String getWorkByDayOfWeek(String dayOfWeek){
+    public String getWorkByDayOfWeek(String date){
 
-        if (StringUtils.isEmpty(dayOfWeek)){
+        if (StringUtils.isEmpty(date)){
             throw new NoDayException("dayOfWeek is null");}
-            return workRepository.findWorksByDayOfWeek(dayOfWeek);
+            return workRepository.findWorksByDayOfWeek(date);
     }
 }
